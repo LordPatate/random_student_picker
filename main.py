@@ -42,6 +42,7 @@ def random_picker_session(file_name: str) -> None:
         "leave",
     }
     student = picker.pick()
+    print(student.first_name, student.last_name)
     try:
         while input() not in quit_aliases:
             student = picker.pick()
