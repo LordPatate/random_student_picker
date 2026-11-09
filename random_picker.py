@@ -19,8 +19,9 @@ class Picker:
         return student
 
 
-def random_picker_session(file_name: str) -> None:
-    picker = Picker(students_from_file(file_name))
+def random_picker_session(paths: list[str]) -> None:
+    students = sum((students_from_file(path) for path in paths), start=[])
+    picker = Picker(students)
     quit_aliases = {
         "exit",
         "quit",
@@ -39,9 +40,9 @@ def random_picker_session(file_name: str) -> None:
 
 def main() -> None:
     parser = ArgumentParser()
-    parser.add_argument("file_name")
+    parser.add_argument("paths", nargs='*')
     namespace = parser.parse_args()
-    random_picker_session(namespace.file_name)
+    random_picker_session(namespace.paths)
 
 
 if __name__ == "__main__":
